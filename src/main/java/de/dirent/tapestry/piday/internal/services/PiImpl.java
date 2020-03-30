@@ -64,7 +64,7 @@ public class PiImpl implements Pi {
         if( search.length() == 0 ) {
             return 0;
         }
-        for( int i=start; i<pi.length(); i++ ) {
+        for( int i=start; i<pi.length()-search.length(); i++ ) {
             for( int j=0; j<search.length(); j++ ) {
                 if( search.charAt(j) != pi.charAt(i+j) ) {
                     break;
