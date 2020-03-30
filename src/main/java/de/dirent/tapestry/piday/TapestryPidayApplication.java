@@ -1,11 +1,15 @@
 package de.dirent.tapestry.piday;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.apache.tapestry5.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
+import org.springframework.boot.context.event.ApplicationPreparedEvent;
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +26,11 @@ public class TapestryPidayApplication {
 
     @Inject
     private Pi pi;
+
+    @EventListener(WebServerInitializedEvent.class)
+    public void loadPi() {
+        pi.init();
+    }
 
     @GetMapping( path = "/pi", produces = "text/plain" )
     public String pi() {
