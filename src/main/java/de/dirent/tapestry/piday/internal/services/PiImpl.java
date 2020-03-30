@@ -1,8 +1,13 @@
 package de.dirent.tapestry.piday.internal.services;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import de.dirent.tapestry.piday.services.Pi;
 
 public class PiImpl implements Pi {
+
+    protected static final Log logger = LogFactory.getLog( Pi.class );
 
     private String pi = "3.14";
 
@@ -13,6 +18,8 @@ public class PiImpl implements Pi {
 
     @Override
     public void init() {
+        logger.info( "Loading pi..." );
+        logger.info( "Loaded pi into memory" );
     }
 
     @Override
